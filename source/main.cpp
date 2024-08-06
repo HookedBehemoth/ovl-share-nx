@@ -16,10 +16,11 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 #define TESLA_INIT_IMPL
+#include <curl/curl.h>
+
 #include "gui_error.hpp"
 #include "gui_main.hpp"
 #include "image_item.hpp"
-#include <curl/curl.h>
 
 #define R_INIT(cmd, message) \
     rc = cmd;                \
@@ -29,8 +30,6 @@
     }
 
 constexpr const SocketInitConfig sockConf = {
-    .bsdsockets_version = 1,
-
     .tcp_tx_buf_size = 0x800,
     .tcp_rx_buf_size = 0x800,
     .tcp_tx_buf_max_size = 0x25000,

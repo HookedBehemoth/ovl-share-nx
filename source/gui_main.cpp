@@ -19,8 +19,8 @@
 
 #include <string>
 
-#include "gui_error.hpp"
 #include "elm_qr.hpp"
+#include "gui_error.hpp"
 #include "upload.hpp"
 
 MainGui::MainGui(const CapsAlbumFileId &file_id, const u8 *rgba_buffer)

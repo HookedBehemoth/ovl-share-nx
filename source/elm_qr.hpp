@@ -1,8 +1,8 @@
 #pragma once
 
+#include <string>
 #include <tesla.hpp>
 #include <vector>
-#include <string>
 
 class ElmQr final : public tsl::elm::Element {
   private:
@@ -10,7 +10,7 @@ class ElmQr final : public tsl::elm::Element {
     int qr_size{};
 
   public:
-    void generateQrCode(const std::string& text);
+    void generateQrCode(const std::string &text);
 
     tsl::elm::Element *requestFocus(tsl::elm::Element *oldFocus, tsl::FocusDirection direction) override;
     void draw(tsl::gfx::Renderer *renderer) override;
