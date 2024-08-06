@@ -16,6 +16,8 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 #define TESLA_INIT_IMPL
+#include <curl/curl.h>
+
 #include "gui_error.hpp"
 #include "gui_main.hpp"
 #include "image_item.hpp"
@@ -28,8 +30,6 @@
     }
 
 constexpr const SocketInitConfig sockConf = {
-    .bsdsockets_version = 1,
-
     .tcp_tx_buf_size = 0x800,
     .tcp_rx_buf_size = 0x800,
     .tcp_tx_buf_max_size = 0x25000,
@@ -77,8 +77,13 @@ class ShareOverlay : public tsl::Overlay {
             msg = "CapSrv error!";
             return;
         }
+
+        if (CURLE_OK != curl_global_init(CURL_GLOBAL_DEFAULT)) {
+            msg = "curl_global_init error!";
+        }
     }
     virtual void exitServices() override {
+        curl_global_cleanup();
         capsaExit();
         socketExit();
     }
